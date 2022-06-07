@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/gameplay/death_screen/death_overlay.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 0.993
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CenterContainer"]
+margin_left = 1001.0
+margin_top = 610.0
+margin_right = 1071.0
+margin_bottom = 630.0
+text = "Try Again"
+
+[connection signal="pressed" from="CenterContainer/Button" to="." method="_on_Button_pressed"]
