@@ -22,7 +22,6 @@ var scenes: Scenes
 onready var transitions: Transition = $Transitions
 onready var active_scene_container = $ActiveSceneContainer
 
-
 func _enter_tree() -> void:
 	_register_size()
 	get_tree().connect("screen_resized", self, "_on_screen_resized")

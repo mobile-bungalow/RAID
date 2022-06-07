@@ -10,6 +10,19 @@ var size: Vector2 setget , get_size
 
 onready var main: Main = get_node_or_null("/root/Main")
 
+enum PlayerState {
+	Alive,
+	Dead,
+	Dashing,
+}
+
+enum MookState {
+	Hunting,
+	Priming,
+	Striking,
+	PostStrike,
+	Dead,
+};
 
 func _ready():
 	if main == null:
