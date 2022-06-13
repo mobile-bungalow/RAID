@@ -4,7 +4,7 @@ var elapsed = 0
 var mookspawner: spawner = spawner.new()
 var basic_mook_scene = preload("res://scenes/gameplay/enemies/mook/mook.tscn");
 var shoot_mook_scene = preload("res://scenes/gameplay/enemies/shoot_mook/shoot_mook.tscn");
-var game_over_screen = preload("res://scenes/gameplay/death_screen/death_overlay.tscn");
+var game_over_screen = preload("res://scenes/gameplay/death_overlay/death_overlay.tscn");
 var smoke = preload("res://scenes/gameplay/smoku.tscn");
 var elapsed_since_last_kill = 0.0;
 var kill_count = 0;
@@ -29,8 +29,8 @@ func update_score():
 	kill_count += 1;
 	combo_count += 1;
 	score += 100 * combo_count;
-	$Control/ScoreLabel.set_text(str("Score   ", score));
-	$Control/ComboLabel.set_text(str("Combo    ", combo_count, "X"));
+	$CanvasLayer/Control/ScoreLabel.set_text(str("Score   ", score));
+	$CanvasLayer/Control/ComboLabel.set_text(str(combo_count, "X"));
 	max_combo = max(max_combo, combo_count);
 	
 
@@ -78,7 +78,21 @@ func pre_start(params):
 	$Player.position = Game.size / 2
 	set_process(false)
 
+func reload_score_overlay():
+	pass
+
 func reset():
+	$CanvasLayer/DeathScene.hide()
+	$CanvasLayer/DeathScene.make_clear()
+	$CanvasLayer/Control.show()
+	kill_count = 0;
+	combo_count = 0;
+	score = 0;
+	max_combo = 0;
+	game_stopped = false;
+	reload_score_overlay();
+	$CanvasLayer/Control/ScoreLabel.set_text(str("Score   ", score));
+	$CanvasLayer/Control/ComboLabel.set_text(str(combo_count, "X"));
 	mookspawner = spawner.new()
 	var size = get_viewport().size;
 	$Player.state = Game.PlayerState.Alive;
@@ -87,6 +101,7 @@ func reset():
 		enemy.queue_free();
 	for overlay in get_tree().get_nodes_in_group("overlay"):
 		overlay.queue_free();
+		
 # `start()` is called when the graphic transition ends.
 func start():
 	print("\ngameplay.gd:start() called")
@@ -95,17 +110,26 @@ func start():
 		active_scene.name, " (", active_scene.filename, ")")
 	set_process(true)
 
+var game_stopped = false;
 func game_over():
-	var cf = game_over_screen.instance();
-	add_child(cf);
-	move_child(cf, 0);
+	if game_stopped:
+		return;
+	else:
+		game_stopped = true;
+	$CanvasLayer/Control.hide()
+	var cf = $CanvasLayer/DeathScene;
+	cf.score = score;
+	cf.max_combo = max_combo;
+	cf.kills = kill_count;
+	cf.show()
+	cf.show_self()
 
 func _process(delta):
 	$Player.input()
 	elapsed_since_last_kill += delta;
-	if elapsed_since_last_kill > 1.5:
-		$Control/ComboLabel.set_text(str("Combo   ", combo_count, "X"));
+	if elapsed_since_last_kill > 0.75:
 		combo_count = 0;
+		$CanvasLayer/Control/ComboLabel.set_text(str(combo_count, "X"));
 	if $Player.state != Game.PlayerState.Dead && mookspawner.time_to_spawn(delta, get_tree()):
 		spawn()
 	

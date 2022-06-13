@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-const speed = 190;
-const attack_radius = 500;
+const speed = 110;
+const attack_radius = 350;
 
 var vel = Vector2.ZERO;
 var dir = Vector2.ZERO;

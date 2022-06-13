@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/gameplay/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Zenzai Itacha.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/gameplay/20_EmbeddedAssets_bg.png" type="Texture" id=3]
+[ext_resource path="res://scenes/gameplay/death_overlay/death_overlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/gameplay/gameplay.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 32
 outline_size = 3
 outline_color = Color( 0.101961, 0.0784314, 0.0784314, 1 )
 extra_spacing_top = -7
@@ -16,7 +17,7 @@ font_data = ExtResource( 2 )
 font_path = "res://scenes/Zenzai Itacha.ttf"
 
 [sub_resource type="DynamicFont" id=3]
-size = 64
+size = 32
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 2 )
@@ -24,24 +25,26 @@ font_data = SubResource( 2 )
 [node name="Gameplay" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 0.097
 margin_left = -4.0
-margin_top = 8.0
-margin_right = -6.0
-margin_bottom = -4.4
+margin_top = 1.0
+margin_right = 3.0
+margin_bottom = 542.8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreLabel" type="Label" parent="Control"]
-anchor_right = 0.066
-anchor_bottom = 0.5
-margin_left = 12.9724
-margin_top = -4.20197
-margin_right = 269.936
-margin_bottom = 250.798
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Control"]
+anchor_right = 0.198
+anchor_bottom = 0.189
+margin_left = 13.0
+margin_top = -4.0
+margin_right = -0.108032
+margin_bottom = 19.87
 custom_fonts/font = SubResource( 1 )
 text = "Score    0"
 align = 1
@@ -50,27 +53,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ComboLabel" type="Label" parent="Control"]
-margin_left = 1641.91
-margin_top = 51.9783
-margin_right = 1969.91
-margin_bottom = 259.978
+[node name="ComboLabel" type="Label" parent="CanvasLayer/Control"]
+margin_left = 862.088
+margin_top = 464.024
+margin_right = 1058.09
+margin_bottom = 616.024
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Combo    0X"
+text = "0X"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DeathScene" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1040.74, 617.824 )
+position = Vector2( 489.363, 312.169 )
 scale = Vector2( 1.34, 1.3 )
 
 [node name="20_EmbeddedAssets_bg" type="Sprite" parent="."]
-position = Vector2( 1024.57, 601.681 )
-scale = Vector2( 2.55308, 1.99464 )
+position = Vector2( 513.108, 300.689 )
+scale = Vector2( 1.30271, 1.03376 )
 z_index = -11
 texture = ExtResource( 3 )
 __meta__ = {

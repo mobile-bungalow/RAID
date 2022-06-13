@@ -1,13 +1,15 @@
 extends KinematicBody2D
 
 export var direction: Vector2; # shot angle
-var speed: float = 750.0;
+var speed: float = 450.0;
 var lifespan = 5.0;
 
 func strike():
 	$CPUParticles2D.emitting = true;
 	speed = 0;
 	$Line2D.hide()
+	$CollisionShape2D.queue_free()
+	$Area2D.queue_free()
 
 func is_lethal():
 	return true;

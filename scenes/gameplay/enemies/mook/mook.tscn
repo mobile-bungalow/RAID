@@ -4,10 +4,10 @@
 [ext_resource path="res://scenes/gameplay/enemies/mook/mook.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.294, 27.8343 )
+extents = Vector2( 10.5061, 16.5603 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20.0265, 29.6939 )
+extents = Vector2( 9.52629, 14.7303 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -258,7 +258,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.12, 0.4 ),
 "transitions": PoolRealArray( 1, 0.164938, 1 ),
 "update": 0,
-"values": [ 10.0, 250.0, 0.0 ]
+"values": [ 10.0, 125.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=34]
@@ -338,18 +338,18 @@ script = ExtResource( 2 )
 slice_width = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.705904, 0.447984 )
+position = Vector2( 2.01753, -2.20649 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0.374115, -0.320265 )
+position = Vector2( 1.68572, -3.50563 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0.0874435, -10.0734 )
-scale = Vector2( 0.538043, 0.669996 )
+position = Vector2( 3.14792, -8.21526 )
+scale = Vector2( 0.297578, 0.427775 )
 frames = SubResource( 31 )
 animation = "run_cycle"
 frame = 13
@@ -376,7 +376,7 @@ spread = 8.95
 gravity = Vector2( 0, 250 )
 initial_velocity = 324.14
 initial_velocity_random = 0.23
-scale_amount = 13.0
+scale_amount = 7.0
 scale_amount_curve = SubResource( 38 )
 color = Color( 0.568627, 0.0862745, 0.0862745, 1 )
 

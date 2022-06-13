@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-const speed = 225;
-const attack_radius = 250;
+const speed = 115;
+const attack_radius = 125;
 
 signal die
 

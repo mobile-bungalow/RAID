@@ -1,11 +1,3 @@
-# Scene manager.
-# When the loading of a new scene is completed, it calls
-# two methods on the new loaded scene (if they are defined):
-# 1. `pre_start(params)`: called as soon as the scene is loaded in memory.
-#   It passes the `params` object received by
-#   `Game.change_scene(new_scene, params)`.
-# 2. `start()`: called when the scene transition is finished and when the
-#  gameplay input is unlocked
 class_name Scenes
 extends Node
 

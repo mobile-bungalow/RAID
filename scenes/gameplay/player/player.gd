@@ -3,9 +3,9 @@ extends KinematicBody2D
 var state = Game.PlayerState.Alive;
 export var dash_offset = 0.0;
 var direction: Vector2 = Vector2.ZERO;
-const speed: int = 6000;
+const speed: int = 3000;
 var velocity: Vector2 = Vector2.ZERO;
-export var time_scale = 1.0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -85,15 +85,14 @@ var can_dash = true;
 var dash_time = 0.0;
 var dash_cd = 0.0;
 var dash_target = Vector2.ZERO;
-
+var game_stopped = false;
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if 	$NoPos/StrikeTrail.default_color.a == 0.0: 
 		$NoPos/StrikeTrail.clear_points();
 	match state:
 		Game.PlayerState.Dead:
-			get_parent().game_over()
-			pass
+				get_parent().game_over()
 		Game.PlayerState.Alive:
 			set_run_animation(direction);
 			velocity += direction.normalized() * speed * delta; 
